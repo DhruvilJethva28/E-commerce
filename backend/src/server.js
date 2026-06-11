@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/database');
 const errorHandler = require('./middleware/errorHandler');
+const { seedDatabaseIfNeeded } = require('./utils/seeder');
 
 // Import routes
 const authRoutes = require('./routes/authRoutes');
@@ -14,7 +15,9 @@ const orderRoutes = require('./routes/orderRoutes');
 const app = express();
 
 // Connect to database
-connectDB();
+connectDB().then(() => {
+  seedDatabaseIfNeeded();
+});
 
 // Middleware
 app.use(cors({
