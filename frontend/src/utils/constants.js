@@ -5,5 +5,6 @@ export const PLACEHOLDER_USER_IMAGE = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0
 
 export const PLACEHOLDER_PRODUCT_IMAGE = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNGMkYyRjIiLz4KICAKICA8cmVjdCB4PSI2MCIgeT0iNjAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBzdHJva2U9IiNDQ0NDQ0MiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgogIDxwYXRoIGQ9Ik0gMTIwIDEzMCBMIDE2MCAxMDAgTCAyMDAgMTQwIiBzdHJva2U9IiNDQ0NDQ0MiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgogIDxjaXJjbGUgY3g9IjE2MCIgY3k9IjExMCIgcj0iMjAiIHN0cm9rZT0iI0NDQ0NDQyIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+Cjwvc3ZnPg==';
 
-export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-export const API_URL = `${API_BASE_URL}/api`;
+const rawUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+export const API_URL = rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`;
+export const API_BASE_URL = API_URL.endsWith('/api') ? API_URL.slice(0, -4) : API_URL;

@@ -20,8 +20,27 @@ connectDB().then(() => {
 });
 
 // Middleware
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://e-commerce-lilac-sigma-44.vercel.app'
+].map(url => url && url.replace(/\/$/, '')).filter(Boolean);
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    
+    const isAllowed = allowedOrigins.includes(origin) || 
+                      origin.startsWith('http://localhost') ||
+                      origin.endsWith('.vercel.app');
+                      
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 }));
 app.use(express.json());
