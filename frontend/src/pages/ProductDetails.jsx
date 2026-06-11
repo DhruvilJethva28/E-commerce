@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { productAPI, cartAPI } from '../utils/api';
+import { productAPI } from '../utils/api';
 import { FaStar, FaShoppingCart, FaCheck, FaTruck } from 'react-icons/fa';
 import useCartStore from '../context/cartStore';
 import toast from 'react-hot-toast';
@@ -14,7 +14,6 @@ const ProductDetails = () => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
   const [submittingReview, setSubmittingReview] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(0);
   const { addItem } = useCartStore();
 
   useEffect(() => {
