@@ -4,7 +4,7 @@ import { FaShoppingCart, FaUser, FaSignOutAlt, FaHome, FaBars, FaTimes, FaMoon, 
 import useAuthStore from '../context/authStore';
 import useCartStore from '../context/cartStore';
 import useThemeStore from '../context/themeStore';
-import { PLACEHOLDER_USER_IMAGE } from '../utils/constants';
+import { PLACEHOLDER_USER_IMAGE, API_BASE_URL } from '../utils/constants';
 
 const Navbar = () => {
   const { user, isAuthenticated, clearAuth } = useAuthStore();
@@ -80,7 +80,7 @@ const Navbar = () => {
                 <Link to="/profile" className="hover:text-blue-200 transition flex items-center gap-2">
                   {user?.profilePicture && user.profilePicture !== PLACEHOLDER_USER_IMAGE ? (
                     <img 
-                      src={user.profilePicture.startsWith('http') ? user.profilePicture : `http://localhost:5000${user.profilePicture}`}
+                      src={user.profilePicture.startsWith('http') ? user.profilePicture : `${API_BASE_URL}${user.profilePicture}`}
                       alt={user?.name}
                       className="w-8 h-8 rounded-full object-cover border-2 border-white"
                       onError={(e) => e.target.src = PLACEHOLDER_USER_IMAGE}

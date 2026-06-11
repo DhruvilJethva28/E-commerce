@@ -4,6 +4,7 @@ import { productAPI, cartAPI } from '../utils/api';
 import { FaStar, FaShoppingCart, FaCheck, FaTruck } from 'react-icons/fa';
 import useCartStore from '../context/cartStore';
 import toast from 'react-hot-toast';
+import { API_BASE_URL } from '../utils/constants';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -67,7 +68,7 @@ const ProductDetails = () => {
 
   // Ensure image has full URL
   const imageUrl = product?.image && !product.image.startsWith('http') && !product.image.startsWith('data:')
-    ? `http://localhost:5000${product.image}`
+    ? `${API_BASE_URL}${product.image}`
     : product?.image;
 
   if (loading) {

@@ -5,7 +5,7 @@ import useAuthStore from '../context/authStore';
 import useThemeStore from '../context/themeStore';
 import toast from 'react-hot-toast';
 import { FaCamera } from 'react-icons/fa';
-import { PLACEHOLDER_USER_IMAGE } from '../utils/constants';
+import { PLACEHOLDER_USER_IMAGE, API_BASE_URL } from '../utils/constants';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -114,7 +114,7 @@ const Profile = () => {
               {/* Profile Picture Section */}
               <div className="flex flex-col items-center mb-8">
                 <img
-                  src={user.profilePicture ? (user.profilePicture.startsWith('http') ? user.profilePicture : `http://localhost:5000${user.profilePicture}`) : PLACEHOLDER_USER_IMAGE}
+                  src={user.profilePicture ? (user.profilePicture.startsWith('http') ? user.profilePicture : `${API_BASE_URL}${user.profilePicture}`) : PLACEHOLDER_USER_IMAGE}
                   alt={user.name}
                   className="w-32 h-32 rounded-full object-cover border-4 border-blue-600 shadow-lg mb-4"
                   onError={(e) => e.target.src = PLACEHOLDER_USER_IMAGE}
@@ -164,7 +164,7 @@ const Profile = () => {
                 <div className="flex flex-col items-center gap-4">
                   <div className="relative">
                     <img
-                      src={imagePreview || (user.profilePicture ? (user.profilePicture.startsWith('http') ? user.profilePicture : `http://localhost:5000${user.profilePicture}`) : PLACEHOLDER_USER_IMAGE)}
+                      src={imagePreview || (user.profilePicture ? (user.profilePicture.startsWith('http') ? user.profilePicture : `${API_BASE_URL}${user.profilePicture}`) : PLACEHOLDER_USER_IMAGE)}
                       alt="Profile"
                       className="w-40 h-40 rounded-full object-cover border-4 border-blue-600 shadow-lg"
                       onError={(e) => e.target.src = PLACEHOLDER_USER_IMAGE}

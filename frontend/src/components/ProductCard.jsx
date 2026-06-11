@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar, FaTag } from 'react-icons/fa';
 import useThemeStore from '../context/themeStore';
+import { API_BASE_URL } from '../utils/constants';
 
 const ProductCard = ({ product, onAddToCart }) => {
   const { isDarkMode } = useThemeStore();
@@ -13,7 +14,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   // Ensure image has full URL
   const imageUrl = product.image && !product.image.startsWith('http') && !product.image.startsWith('data:')
-    ? `http://localhost:5000${product.image}`
+    ? `${API_BASE_URL}${product.image}`
     : product.image;
 
   const cardBg = isDarkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-900';
